@@ -1,0 +1,36 @@
+<p-table [value]="products" responsiveLayout="scroll" [paginator]="false" [rows]="5" [showCurrentPageReport]="true" styleClass="p-datatable-striped" styleClass="p-datatable-md">
+    <ng-template pTemplate="caption">
+        <div class="flex-between">
+            <div class="flex align-items-center justify-content-between">
+                <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" [(ngModel)]="searchText" placeholder="Search..." />
+      </span>
+            </div>
+            <p-button routerLink="addUser" icon="" label="Create Invoice" (click)="goTo('addUser')"></p-button>
+
+
+
+
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Invoice No.</th>
+            <th>Client Name</th>
+            <th>Payment Status</th>
+            <th>
+                Amount
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product responsiveLayout="scroll" *ngIf="hideTable">
+        <tr class="center">
+            <td><img src="{{product.flag}}" class="flag"></td>
+            <td>{{product.mine}}</td>
+            <td><span [class]="status=='open' ? 'open': 'closed' ">{{status}}</span></td>
+            <td>{{product.date}}</td>
+        </tr>
+    </ng-template>
+
+</p-table>
